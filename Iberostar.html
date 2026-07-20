@@ -8,107 +8,133 @@
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
 :root{
   --p:#6B1B1B;--p2:#B52A2A;--pbg:#6B1B1B22;
-  --verde:#166534;--verde-bg:#DCFCE7;
-  --rojo:#991B1B;--rojo-bg:#FEE2E2;
+  --verde:#166534;--vbg:#DCFCE7;
+  --rojo:#991B1B;--rbg:#FEE2E2;
   --gris:#374151;--gm:#6B7280;--gc:#F3F4F6;
-  --borde:#E5E7EB;--w:#FFFFFF;--r:14px;
+  --borde:#E5E7EB;--r:14px;
 }
-body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--gc);color:var(--gris);min-height:100vh;padding-bottom:40px}
-.hdr{background:var(--p);padding:14px 18px 12px;position:sticky;top:0;z-index:100;box-shadow:0 2px 12px rgba(0,0,0,.25)}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--gc);color:var(--gris);height:100vh;display:flex;flex-direction:column;overflow:hidden}
+
+/* HEADER fijo */
+.hdr{background:var(--p);padding:12px 16px 10px;flex-shrink:0;box-shadow:0 2px 10px rgba(0,0,0,.2)}
 .hdr-row{display:flex;align-items:center;justify-content:space-between}
-.obra-badge{font-size:10px;font-weight:700;color:rgba(255,255,255,.55);letter-spacing:.7px;text-transform:uppercase;margin-bottom:3px}
-.obra-nom{font-size:16px;font-weight:800;color:#fff;line-height:1.2}
-.chip{display:flex;align-items:center;gap:5px;background:rgba(255,255,255,.13);border-radius:99px;padding:5px 11px;font-size:12px;color:rgba(255,255,255,.85)}
-.dot{width:7px;height:7px;border-radius:50%;background:#4ade80}
-.cont{padding:14px;max-width:480px;margin:0 auto}
-.card{background:#fff;border-radius:var(--r);box-shadow:0 2px 8px rgba(0,0,0,.06);padding:16px;margin-bottom:12px;border:1px solid var(--borde)}
-.ctit{font-size:10px;font-weight:800;color:var(--p2);letter-spacing:.7px;text-transform:uppercase;margin-bottom:11px;display:flex;align-items:center;gap:6px}
-.ctit::before{content:'';display:block;width:3px;height:13px;background:var(--p2);border-radius:2px}
-.bwrap{display:flex;gap:8px}
+.obra-badge{font-size:9px;font-weight:700;color:rgba(255,255,255,.5);letter-spacing:.7px;text-transform:uppercase;margin-bottom:2px}
+.obra-nom{font-size:15px;font-weight:800;color:#fff}
+.chip{display:flex;align-items:center;gap:5px;background:rgba(255,255,255,.13);border-radius:99px;padding:4px 10px;font-size:11px;color:rgba(255,255,255,.85)}
+.dot{width:6px;height:6px;border-radius:50%;background:#4ade80}
+
+/* LAYOUT — 2 columnas en landscape, 1 en portrait */
+.layout{flex:1;overflow:hidden;display:flex;flex-direction:column;padding:10px;gap:8px}
+
+/* PANEL SUPERIOR — búsqueda + lista */
+.panel-busq{background:#fff;border-radius:var(--r);border:1px solid var(--borde);overflow:hidden;display:flex;flex-direction:column}
+.busq-top{padding:10px 10px 8px;flex-shrink:0}
+.bwrap{display:flex;gap:6px;margin-bottom:8px}
 .biwrap{position:relative;flex:1}
-.binp{width:100%;padding:13px 14px 13px 42px;font-size:15px;border:1.5px solid var(--borde);border-radius:10px;background:var(--gc);color:var(--gris);outline:none;transition:border-color .2s;font-family:inherit}
+.binp{width:100%;padding:10px 12px 10px 38px;font-size:14px;border:1.5px solid var(--borde);border-radius:9px;background:var(--gc);color:var(--gris);outline:none;font-family:inherit;transition:border-color .2s}
 .binp:focus{border-color:var(--p2);background:#fff}
-.bico{position:absolute;left:13px;top:50%;transform:translateY(-50%);font-size:17px;pointer-events:none}
-.inp{width:100%;padding:13px 14px;font-size:15px;border:1.5px solid var(--borde);border-radius:10px;background:var(--gc);color:var(--gris);outline:none;transition:border-color .2s;font-family:inherit}
-.inp:focus{border-color:var(--p2);background:#fff}
-.bscan{width:48px;height:48px;border-radius:10px;border:1.5px solid var(--borde);background:var(--gc);font-size:22px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .15s;flex-shrink:0}
+.bico{position:absolute;left:11px;top:50%;transform:translateY(-50%);font-size:15px;pointer-events:none}
+.bscan{width:44px;height:44px;border-radius:9px;border:1.5px solid var(--borde);background:var(--gc);font-size:20px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0}
 .bscan:active{background:var(--pbg);border-color:var(--p2)}
+
+/* TIPO inline */
+.tipo-row{display:flex;gap:6px}
+.tbtn{flex:1;padding:8px 6px;border-radius:8px;border:1.5px solid var(--borde);background:var(--gc);cursor:pointer;text-align:center;font-family:inherit;font-size:12px;font-weight:700;transition:all .15s;display:flex;align-items:center;justify-content:center;gap:5px}
+.tbtn:active{transform:scale(.97)}
+.tbtn.sal{border-color:var(--rojo);background:var(--rbg);color:var(--rojo)}
+.tbtn.ent{border-color:var(--verde);background:var(--vbg);color:var(--verde)}
+
+/* LISTA — scroll interno, máx 10 items */
+.lista{overflow-y:auto;flex:1;padding:0 8px 8px}
+.pitem{border:1.5px solid var(--borde);border-radius:10px;cursor:pointer;transition:all .12s;overflow:hidden;background:var(--gc);display:flex;align-items:stretch;margin-bottom:6px;min-height:60px}
+.pitem:last-child{margin-bottom:0}
+.pitem:active{transform:scale(.985)}
+.pitem.sel{border-color:var(--p2);background:var(--pbg)}
+.pitem.alerta{border-color:#FCA5A5;background:#FFF7F7}
+.pfoto{width:60px;flex-shrink:0;background:#e5e7eb;display:flex;align-items:center;justify-content:center;font-size:22px;overflow:hidden}
+.pfoto img{width:100%;height:100%;object-fit:cover}
+.pfoto img.err{display:none}
+.pfoto .fb{font-size:22px;display:flex;align-items:center;justify-content:center;width:100%;height:100%}
+.pbody{flex:1;padding:8px 10px;min-width:0;display:flex;flex-direction:column;justify-content:center}
+.pnom{font-size:13px;font-weight:700;color:var(--gris);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pmeta{font-size:10px;color:var(--gm);margin-top:1px}
+.badge{display:inline-block;font-size:9px;font-weight:700;padding:1px 6px;border-radius:99px;margin-top:3px}
+.badge.a{color:var(--rojo);background:var(--rbg)}
+.badge.ok{color:var(--verde);background:var(--vbg)}
+.pright{padding:8px 8px 8px 0;text-align:right;flex-shrink:0;display:flex;flex-direction:column;align-items:flex-end;justify-content:center;min-width:48px}
+.pstk{font-size:20px;font-weight:800;color:var(--p);line-height:1}
+.pstk.bajo{color:var(--rojo)}
+.puni{font-size:9px;color:var(--gm)}
+.chk{width:18px;height:18px;border-radius:50%;background:var(--p2);color:#fff;font-size:10px;display:flex;align-items:center;justify-content:center;margin-top:3px}
+.empty{text-align:center;color:var(--gm);font-size:12px;padding:16px 0}
+.hint{font-size:10px;color:var(--gm);text-align:center;padding:4px 0 6px;flex-shrink:0}
+
+/* PANEL INFERIOR — solicitante + cantidad + botón */
+.panel-reg{background:#fff;border-radius:var(--r);border:1px solid var(--borde);padding:12px;flex-shrink:0;display:flex;flex-direction:column;gap:10px}
+
+.sol-row{display:flex;gap:6px;align-items:center}
+.sol-inp{flex:1;padding:10px 12px 10px 38px;font-size:14px;border:1.5px solid var(--borde);border-radius:9px;background:var(--gc);color:var(--gris);outline:none;font-family:inherit;transition:border-color .2s}
+.sol-inp:focus{border-color:var(--p2);background:#fff}
+.sol-wrap{position:relative;flex:1}
+.sol-ico{position:absolute;left:11px;top:50%;transform:translateY(-50%);font-size:15px;pointer-events:none}
+
+/* PRODUCTO SELECCIONADO — banner compacto */
+.prod-sel-banner{display:none;background:var(--pbg);border:1px solid var(--p2);border-radius:9px;padding:8px 12px;align-items:center;gap:10px}
+.prod-sel-banner.visible{display:flex}
+.psb-foto{width:38px;height:38px;border-radius:7px;overflow:hidden;background:#e5e7eb;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.psb-foto img{width:100%;height:100%;object-fit:cover}
+.psb-info{flex:1;min-width:0}
+.psb-nom{font-size:13px;font-weight:700;color:var(--p);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.psb-stk{font-size:11px;color:var(--gm)}
+.psb-x{background:none;border:none;font-size:18px;color:var(--gm);cursor:pointer;padding:0 2px;flex-shrink:0}
+
+/* CANTIDAD */
+.cant-row{display:flex;align-items:center;gap:10px}
+.cant-lbl{font-size:11px;font-weight:700;color:var(--p2);text-transform:uppercase;letter-spacing:.5px;flex-shrink:0}
+.cbn{width:40px;height:40px;border-radius:50%;border:none;cursor:pointer;font-size:22px;font-weight:300;display:flex;align-items:center;justify-content:center;transition:transform .1s;user-select:none;flex-shrink:0}
+.cbn:active{transform:scale(.88)}
+.cbn.m{background:var(--rbg);color:var(--rojo)}
+.cbn.p{background:var(--vbg);color:var(--verde)}
+.cnum{font-size:28px;font-weight:800;color:var(--p);min-width:44px;text-align:center;line-height:1;flex:1}
+.cuni{font-size:11px;color:var(--gm);text-align:center}
+
+/* BTN REGISTRAR */
+.breg{width:100%;padding:14px;border-radius:var(--r);border:none;font-size:15px;font-weight:800;cursor:pointer;background:var(--p);color:#fff;display:flex;align-items:center;justify-content:center;gap:8px;box-shadow:0 3px 10px rgba(0,0,0,.18);font-family:inherit}
+.breg:active{transform:scale(.98);box-shadow:none}
+.breg:disabled{background:#9CA3AF;box-shadow:none;cursor:not-allowed}
+
 /* SCANNER */
 .sov{display:none;position:fixed;inset:0;background:rgba(0,0,0,.93);z-index:200;flex-direction:column;align-items:center;justify-content:center}
 .sov.on{display:flex}
-.sframe{position:relative;width:290px;height:290px;border-radius:20px;overflow:hidden;background:#000}
+.sframe{position:relative;width:260px;height:260px;border-radius:18px;overflow:hidden;background:#000}
 #svid{width:100%;height:100%;object-fit:cover}
-.sborder{position:absolute;inset:0;border:3px solid var(--p2);border-radius:20px;pointer-events:none}
-.sline{position:absolute;left:16px;right:16px;height:2.5px;background:var(--p2);opacity:.9;animation:scn 2s ease-in-out infinite}
+.sborder{position:absolute;inset:0;border:3px solid var(--p2);border-radius:18px;pointer-events:none}
+.sline{position:absolute;left:14px;right:14px;height:2px;background:var(--p2);animation:scn 2s ease-in-out infinite}
 @keyframes scn{0%{top:15%}50%{top:80%}100%{top:15%}}
-.stxt{color:#fff;font-size:14px;margin-top:20px;text-align:center;opacity:.85;line-height:1.6}
-.sbold{font-weight:700;color:var(--p2)}
-.scncl{margin-top:20px;padding:12px 32px;border-radius:99px;border:1.5px solid rgba(255,255,255,.3);background:transparent;color:#fff;font-size:14px;cursor:pointer;font-family:inherit}
-#scan-input{display:none}
-/* PRODUCTOS */
-.lista{margin-top:10px;display:flex;flex-direction:column;gap:8px}
-.pitem{border:1.5px solid var(--borde);border-radius:12px;cursor:pointer;transition:all .15s;overflow:hidden;background:var(--gc);display:flex;align-items:stretch;min-height:80px}
-.pitem:active{transform:scale(.98)}
-.pitem.sel{border-color:var(--p2);background:var(--pbg)}
-.pitem.alerta{border-color:#FCA5A5;background:#FFF7F7}
-/* FOTO */
-.pfoto{width:80px;min-height:80px;flex-shrink:0;background:#e5e7eb;display:flex;align-items:center;justify-content:center;overflow:hidden;position:relative}
-.pfoto img{width:100%;height:100%;object-fit:cover;display:block}
-.pfoto img.error{display:none}
-.pfoto .fallback{font-size:30px;position:absolute;inset:0;display:flex;align-items:center;justify-content:center}
-.pbody{flex:1;padding:10px 12px;min-width:0}
-.pnom{font-size:14px;font-weight:700;color:var(--gris);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.pmeta{font-size:11px;color:var(--gm);margin-top:2px}
-.badge{display:inline-block;font-size:10px;font-weight:700;padding:2px 7px;border-radius:99px;margin-top:4px}
-.badge.a{color:var(--rojo);background:var(--rojo-bg)}
-.badge.ok{color:var(--verde);background:var(--verde-bg)}
-.pright{padding:10px 10px 10px 0;text-align:right;flex-shrink:0;display:flex;flex-direction:column;align-items:flex-end;justify-content:center;min-width:52px}
-.pstk{font-size:22px;font-weight:800;color:var(--p);line-height:1}
-.pstk.bajo{color:var(--rojo)}
-.puni{font-size:10px;color:var(--gm)}
-.chk{width:20px;height:20px;border-radius:50%;background:var(--p2);color:#fff;font-size:11px;display:flex;align-items:center;justify-content:center;margin-top:4px}
-/* TIPO */
-.tgrid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-.tbtn{padding:14px;border-radius:10px;border:1.5px solid var(--borde);background:var(--gc);cursor:pointer;text-align:center;transition:all .15s;font-family:inherit}
-.tbtn:active{transform:scale(.97)}
-.tbtn.sal{border-color:var(--rojo);background:var(--rojo-bg)}
-.tbtn.ent{border-color:var(--verde);background:var(--verde-bg)}
-.tico{font-size:22px;margin-bottom:4px}
-.tlbl{font-size:13px;font-weight:800}
-.tsub{font-size:11px;color:var(--gm);margin-top:2px}
-/* CANTIDAD */
-.cwrap{display:flex;align-items:center;gap:14px;justify-content:center;padding:6px 0}
-.cbn{width:54px;height:54px;border-radius:50%;border:none;cursor:pointer;font-size:28px;font-weight:300;display:flex;align-items:center;justify-content:center;transition:transform .1s;user-select:none}
-.cbn:active{transform:scale(.9)}
-.cbn.m{background:var(--rojo-bg);color:var(--rojo)}
-.cbn.p{background:var(--verde-bg);color:var(--verde)}
-.cnum{font-size:44px;font-weight:800;color:var(--p);min-width:64px;text-align:center;line-height:1}
-.cuni{font-size:13px;color:var(--gm);text-align:center;margin-top:4px}
-textarea.notas{width:100%;padding:12px 14px;font-size:14px;border:1.5px solid var(--borde);border-radius:10px;background:var(--gc);color:var(--gris);resize:none;min-height:65px;font-family:inherit;outline:none;transition:border-color .2s}
-textarea.notas:focus{border-color:var(--p2);background:#fff}
-.breg{width:100%;padding:17px;border-radius:var(--r);border:none;font-size:16px;font-weight:800;cursor:pointer;background:var(--p);color:#fff;transition:all .2s;font-family:inherit;display:flex;align-items:center;justify-content:center;gap:8px;box-shadow:0 4px 14px rgba(0,0,0,.2)}
-.breg:active{transform:scale(.98);box-shadow:none}
-.breg:disabled{background:#9CA3AF;box-shadow:none;cursor:not-allowed}
-.ri{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid var(--borde);font-size:13px}
-.ri:last-child{border-bottom:none}
-.rt{width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0}
-.rt.e{background:var(--verde-bg)}.rt.s{background:var(--rojo-bg)}
-.rf{flex:1;min-width:0}
-.rn{font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.rm{color:var(--gm);font-size:11px;margin-top:1px}
-.rc{font-weight:800;flex-shrink:0}
-.rc.e{color:var(--verde)}.rc.s{color:var(--rojo)}
-.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(80px);background:var(--p);color:#fff;padding:13px 22px;border-radius:99px;font-size:14px;font-weight:700;box-shadow:0 4px 16px rgba(0,0,0,.25);transition:transform .35s cubic-bezier(.34,1.56,.64,1);white-space:nowrap;z-index:999}
+.stxt{color:#fff;font-size:13px;margin-top:16px;text-align:center;opacity:.85;line-height:1.5}
+.scncl{margin-top:16px;padding:10px 28px;border-radius:99px;border:1.5px solid rgba(255,255,255,.3);background:transparent;color:#fff;font-size:13px;cursor:pointer;font-family:inherit}
+
+/* RECIENTES — drawer compacto */
+.recs-bar{background:#fff;border-top:1px solid var(--borde);padding:6px 12px;flex-shrink:0}
+.recs-tit{font-size:9px;font-weight:700;color:var(--p2);text-transform:uppercase;letter-spacing:.6px;margin-bottom:4px}
+.recs-list{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;padding-bottom:2px}
+.recs-list::-webkit-scrollbar{display:none}
+.rec-chip{display:flex;align-items:center;gap:5px;background:var(--gc);border:1px solid var(--borde);border-radius:99px;padding:4px 10px;white-space:nowrap;flex-shrink:0;font-size:11px}
+.rec-chip.e{border-color:#86EFAC;background:var(--vbg)}
+.rec-chip.s{border-color:#FCA5A5;background:var(--rbg)}
+
+/* TOAST */
+.toast{position:fixed;bottom:16px;left:50%;transform:translateX(-50%) translateY(70px);background:var(--p);color:#fff;padding:11px 20px;border-radius:99px;font-size:13px;font-weight:700;box-shadow:0 4px 14px rgba(0,0,0,.22);transition:transform .3s cubic-bezier(.34,1.56,.64,1);white-space:nowrap;z-index:999}
 .toast.verde{background:var(--verde)}.toast.rojo{background:var(--rojo)}
 .toast.show{transform:translateX(-50%) translateY(0)}
-.sp{display:inline-block;width:18px;height:18px;border:2px solid var(--borde);border-top-color:var(--p2);border-radius:50%;animation:spin .7s linear infinite;margin-right:6px;vertical-align:middle}
+.sp{display:inline-block;width:15px;height:15px;border:2px solid rgba(255,255,255,.3);border-top-color:#fff;border-radius:50%;animation:spin .7s linear infinite;margin-right:5px;vertical-align:middle}
 @keyframes spin{to{transform:rotate(360deg)}}
-.empty{text-align:center;color:var(--gm);font-size:13px;padding:18px 0}
-.loading{text-align:center;padding:24px;color:var(--gm);font-size:14px}
+#scan-input{display:none}
 </style>
 </head>
 <body>
 
+<!-- HEADER -->
 <div class="hdr">
   <div class="hdr-row">
     <div>
@@ -119,63 +145,69 @@ textarea.notas:focus{border-color:var(--p2);background:#fff}
   </div>
 </div>
 
+<!-- SCANNER -->
 <div class="sov" id="sov">
   <div class="sframe">
     <video id="svid" autoplay playsinline muted></video>
     <div class="sborder"></div>
     <div class="sline"></div>
   </div>
-  <p class="stxt">Apunta al código de barras<br><span class="sbold">del producto o del empleado</span></p>
+  <p class="stxt">Apunta al código de barras</p>
   <button class="scncl" onclick="cerrarScanner()">Cancelar</button>
 </div>
 <input type="file" id="scan-input" accept="image/*" capture="environment" onchange="procesarImgScan(this)"/>
 
-<div class="cont">
+<!-- LAYOUT PRINCIPAL -->
+<div class="layout">
 
-  <div class="card">
-    <div class="ctit">Quién solicita</div>
-    <div class="bwrap">
-      <div class="biwrap">
-        <span class="bico">👤</span>
-        <input class="binp" id="sol" placeholder="Nombre del trabajador..." autocomplete="off"/>
+  <!-- PANEL BÚSQUEDA + LISTA -->
+  <div class="panel-busq">
+    <div class="busq-top">
+      <!-- TIPO -->
+      <div class="tipo-row" style="margin-bottom:8px">
+        <button class="tbtn sal" id="bsal" onclick="setTipo('Salida')">📤 Salida</button>
+        <button class="tbtn" id="bent" onclick="setTipo('Entrada')">📥 Entrada</button>
+      </div>
+      <!-- BUSCAR -->
+      <div class="bwrap">
+        <div class="biwrap">
+          <span class="bico">🔍</span>
+          <input class="binp" id="buscar" placeholder="Buscar por nombre o código..." oninput="filtrar()" autocomplete="off"/>
+        </div>
+        <button class="bscan" onclick="iniciarScan('prod')">📷</button>
+      </div>
+    </div>
+    <div class="hint" id="hint">Mostrando 10 productos — escribe para filtrar</div>
+    <div class="lista" id="lista">
+      <div class="empty"><span class="sp" style="border-top-color:var(--p2);border-color:var(--borde)"></span> Cargando...</div>
+    </div>
+  </div>
+
+  <!-- PANEL REGISTRO -->
+  <div class="panel-reg">
+
+    <!-- SOLICITANTE -->
+    <div class="sol-row">
+      <div class="sol-wrap">
+        <span class="sol-ico">👤</span>
+        <input class="sol-inp" id="sol" placeholder="Quién solicita..." autocomplete="off"/>
       </div>
       <button class="bscan" onclick="iniciarScan('emp')">📷</button>
     </div>
-  </div>
 
-  <div class="card">
-    <div class="ctit">Tipo de movimiento</div>
-    <div class="tgrid">
-      <button class="tbtn sal" id="bsal" onclick="setTipo('Salida')">
-        <div class="tico">📤</div>
-        <div class="tlbl" style="color:var(--rojo)">Salida</div>
-        <div class="tsub">Material a obra</div>
-      </button>
-      <button class="tbtn" id="bent" onclick="setTipo('Entrada')">
-        <div class="tico">📥</div>
-        <div class="tlbl">Entrada</div>
-        <div class="tsub">Material regresa</div>
-      </button>
-    </div>
-  </div>
-
-  <div class="card">
-    <div class="ctit">Seleccionar producto</div>
-    <div class="bwrap">
-      <div class="biwrap">
-        <span class="bico">🔍</span>
-        <input class="binp" id="buscar" placeholder="Buscar por nombre o código..." oninput="filtrar()" autocomplete="off"/>
+    <!-- PRODUCTO SELECCIONADO -->
+    <div class="prod-sel-banner" id="psb">
+      <div class="psb-foto" id="psb-foto">📦</div>
+      <div class="psb-info">
+        <div class="psb-nom" id="psb-nom">—</div>
+        <div class="psb-stk" id="psb-stk">—</div>
       </div>
-      <button class="bscan" onclick="iniciarScan('prod')">📷</button>
+      <button class="psb-x" onclick="deselProd()">✕</button>
     </div>
-    <div class="lista" id="lista">
-      <div class="loading"><span class="sp"></span>Cargando productos...</div>
-    </div>
-  </div>
 
-  <div class="card" id="ccant" style="display:none">
-    <div class="ctit">Cantidad</div>
-    <div class="cwrap">
+    <!-- CANTIDAD -->
+    <div class="cant-row">
+      <span class="cant-lbl">Cantidad</span>
       <button class="cbn m" onclick="adj(-1)">−</button>
       <div>
         <div class="cnum" id="cnum">1</div>
@@ -183,23 +215,22 @@ textarea.notas:focus{border-color:var(--p2);background:#fff}
       </div>
       <button class="cbn p" onclick="adj(1)">+</button>
     </div>
-  </div>
 
-  <div class="card" id="cnotas" style="display:none">
-    <div class="ctit">Notas (opcional)</div>
-    <textarea class="notas" id="notas" placeholder="Destino específico, observaciones..."></textarea>
-  </div>
+    <!-- BOTÓN REGISTRAR -->
+    <button class="breg" id="breg" onclick="registrar()" disabled>
+      📋 <span id="btxt">Selecciona un producto</span>
+    </button>
 
-  <button class="breg" id="breg" onclick="registrar()" disabled>
-    📋 <span id="btxt">Selecciona un producto</span>
-  </button>
-
-  <div class="card" style="margin-top:18px">
-    <div class="ctit">Últimos movimientos</div>
-    <div id="recs"><div class="empty">Sin movimientos recientes</div></div>
   </div>
 
 </div>
+
+<!-- RECIENTES -->
+<div class="recs-bar" id="recs-bar" style="display:none">
+  <div class="recs-tit">Últimos movimientos</div>
+  <div class="recs-list" id="recs-list"></div>
+</div>
+
 <div class="toast" id="toast"></div>
 
 <script>
@@ -209,30 +240,26 @@ const T={prods:'tblPyy38f43qcE568',pase:'tblpwIhATaZUEg6pA'};
 const F={
   nom:'fldbUrSfzgKXPLKd5',stk:'flddgtMJ98pPXc36a',uni:'fldu2pFkFHQpBEl5q',
   min:'fld0TgAqomIRYpOyp',cod:'fldV0vuZbNRCJouPp',
-  fot1:'fldQDL8wnbiTOLohp',   // Foto del Producto
-  fot2:'flda0kejgygbIBbUv',   // Foto Producto IA
+  fot1:'fldQDL8wnbiTOLohp',fot2:'flda0kejgygbIBbUv',
   cb1:'fldzYIIAmZGRBgAQf',cb2:'fld0DWsoLQqWuuzQE',
   pF:'fldJOkk8984Ndp8v1',pT:'fldR4amDfLwDGYjoS',pCl:'fldgvS4nzYY3VUE3p',
   pSt:'fldhzr3FaJII14nFK',pM:'fld5g6pGOB4cM6MAb',pP:'fldzWNK589j7y0EVX',
   pCa:'fldwS3QyMM1ZQbR66',pSo:'fldSyNLmVu5XuBn3f',
 };
+
 let todos=[],sel=null,cant=1,tipo='Salida',recs=[],scanTarget='prod',scanStream=null,scanRaf=null;
 const hdrs=()=>({'Authorization':'Bearer '+APIKEY,'Content-Type':'application/json'});
 const isHttps=location.protocol==='https:'||location.hostname==='localhost';
 
-// ── Extraer mejor URL de foto ─────────────────────────────────────
-function getFoto(flds) {
-  // Intentar campo 1 y campo 2
-  const att = flds[F.fot1] || flds[F.fot2] || flds['Foto del Producto'] || flds['Foto Producto IA'];
-  if (!att || !att.length) return null;
-  const a = att[0];
-  // Preferir thumbnail large, luego small, luego url directa
-  return a.thumbnails?.large?.url || a.thumbnails?.small?.url || a.url || null;
+function getFoto(flds){
+  const a=flds[F.fot1]||flds[F.fot2]||flds['Foto del Producto']||flds['Foto Producto IA'];
+  if(!a||!a.length) return null;
+  return a[0].thumbnails?.large?.url||a[0].thumbnails?.small?.url||a[0].url||null;
 }
 
-async function cargar() {
+async function cargar(){
   document.getElementById('est').textContent='Cargando...';
-  try {
+  try{
     const fields=[F.nom,F.stk,F.uni,F.min,F.cod,F.fot1,F.fot2,F.cb1,F.cb2];
     let url=`${BURL}/${T.prods}?pageSize=100`+fields.map(f=>'&fields[]='+f).join('');
     const r=await fetch(url,{headers:hdrs()});
@@ -240,36 +267,46 @@ async function cargar() {
     const d=await r.json();
     todos=d.records.map(rec=>{
       const flds=rec.fields;
-      return {
+      return{
         id:rec.id,
-        nombre:flds[F.nom]||flds['Nombre del Producto']||'',
-        stock:flds[F.stk]||flds['Stock Disponible']||0,
-        unidad:(flds[F.uni]||flds['Unidad']||'PZ').replace(/\bUDS\b/gi,'PZ'),
-        min:flds[F.min]||flds['Seguridad']||0,
-        codigo:flds[F.cod]||flds['Código de Producto']||'',
+        nombre:flds[F.nom]||'',
+        stock:flds[F.stk]||0,
+        unidad:(flds[F.uni]||'PZ').replace(/\bUDS\b/gi,'PZ'),
+        min:flds[F.min]||0,
+        codigo:flds[F.cod]||'',
         cbarra:flds[F.cb1]?.text||flds[F.cb2]?.text||'',
         foto:getFoto(flds),
       };
     }).filter(p=>p.nombre).sort((a,b)=>a.nombre.localeCompare(b.nombre));
-    const conFoto=todos.filter(p=>p.foto).length;
-    document.getElementById('est').textContent=`Conectado ✓ (${conFoto} con foto)`;
-    renderLista(todos);
-  } catch(e) {
+    const cf=todos.filter(p=>p.foto).length;
+    document.getElementById('est').textContent=`✓ ${todos.length} productos`;
+    renderLista(todos.slice(0,10));
+  }catch(e){
     document.getElementById('est').textContent='⚠ Sin conexión';
     document.getElementById('lista').innerHTML='<div class="empty">⚠ Verifica la API Key</div>';
   }
 }
 
-function renderLista(lista) {
+function renderLista(lista){
   const el=document.getElementById('lista');
-  if(!lista.length){el.innerHTML='<div class="empty">Sin resultados</div>';return;}
-  el.innerHTML=lista.slice(0,40).map(p=>{
+  const hint=document.getElementById('hint');
+  const q=document.getElementById('buscar').value.trim();
+  if(!lista.length){
+    el.innerHTML='<div class="empty">Sin resultados</div>';
+    hint.textContent='Sin resultados';
+    return;
+  }
+  // Máximo 10
+  const mostrar=lista.slice(0,10);
+  hint.textContent=q
+    ? `${mostrar.length} resultado${mostrar.length!==1?'s':''} para "${q}"`
+    : `Mostrando ${mostrar.length} de ${todos.length} — escribe para filtrar`;
+
+  el.innerHTML=mostrar.map(p=>{
     const bajo=p.min>0&&p.stock<=p.min, s=sel&&sel.id===p.id;
-    // Foto: si tiene URL la usamos, si falla el <img> mostramos el fallback
     const fotoHtml=p.foto
-      ? `<img src="${p.foto}" alt="${p.nombre}" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
-         <div class="fallback" style="display:none">📦</div>`
-      : `<div class="fallback">📦</div>`;
+      ? `<img src="${p.foto}" alt="" loading="lazy" onerror="this.classList.add('err');this.nextElementSibling.style.display='flex'"/><div class="fb" style="display:none">📦</div>`
+      : `<div class="fb">📦</div>`;
     return `<div class="pitem ${bajo?'alerta':''} ${s?'sel':''}" onclick="selProd('${p.id}')">
       <div class="pfoto">${fotoHtml}</div>
       <div class="pbody">
@@ -286,129 +323,131 @@ function renderLista(lista) {
   }).join('');
 }
 
-function filtrar() {
+function filtrar(){
   const q=document.getElementById('buscar').value.toLowerCase().trim();
-  renderLista(q?todos.filter(p=>p.nombre.toLowerCase().includes(q)||p.codigo.toLowerCase().includes(q)||p.cbarra.toLowerCase().includes(q)):todos);
+  const filtrados=q
+    ? todos.filter(p=>p.nombre.toLowerCase().includes(q)||p.codigo.toLowerCase().includes(q)||p.cbarra.toLowerCase().includes(q))
+    : todos;
+  renderLista(filtrados);
 }
 
-function selProd(id) {
+function selProd(id){
   sel=todos.find(p=>p.id===id); cant=1;
+  // Banner producto seleccionado
+  document.getElementById('psb-nom').textContent=sel.nombre;
+  document.getElementById('psb-stk').textContent=`Stock: ${sel.stock} ${sel.unidad}`;
   document.getElementById('cnum').textContent='1';
   document.getElementById('cuni').textContent=sel.unidad;
-  document.getElementById('ccant').style.display='block';
-  document.getElementById('cnotas').style.display='block';
   document.getElementById('breg').disabled=false;
-  document.getElementById('btxt').textContent=`Registrar ${tipo} — ${sel.nombre}`;
+  document.getElementById('btxt').textContent=`Registrar ${tipo}`;
+  // Foto en banner
+  const psbFoto=document.getElementById('psb-foto');
+  if(sel.foto){
+    psbFoto.innerHTML=`<img src="${sel.foto}" alt="" style="width:100%;height:100%;object-fit:cover;border-radius:7px" onerror="this.parentElement.innerHTML='📦'"/>`;
+  } else {
+    psbFoto.innerHTML='📦';
+  }
+  document.getElementById('psb').classList.add('visible');
   filtrar();
-  document.getElementById('ccant').scrollIntoView({behavior:'smooth',block:'nearest'});
 }
 
-function setTipo(t) {
+function deselProd(){
+  sel=null; cant=1;
+  document.getElementById('psb').classList.remove('visible');
+  document.getElementById('breg').disabled=true;
+  document.getElementById('btxt').textContent='Selecciona un producto';
+  document.getElementById('cnum').textContent='1';
+  filtrar();
+}
+
+function setTipo(t){
   tipo=t;
   document.getElementById('bsal').className='tbtn'+(t==='Salida'?' sal':'');
   document.getElementById('bent').className='tbtn'+(t==='Entrada'?' ent':'');
-  if(sel) document.getElementById('btxt').textContent=`Registrar ${t} — ${sel.nombre}`;
+  if(sel) document.getElementById('btxt').textContent=`Registrar ${t}`;
 }
 function adj(d){cant=Math.max(1,cant+d);document.getElementById('cnum').textContent=cant;}
 
-// ── SCANNER ───────────────────────────────────────────────────────
-function iniciarScan(target) {
+// SCANNER
+function iniciarScan(target){
   scanTarget=target;
-  if(isHttps) { abrirCamaraDirecta(); }
-  else { document.getElementById('scan-input').click(); }
+  if(isHttps){abrirCamaraDirecta();}
+  else{document.getElementById('scan-input').click();}
 }
-
-async function abrirCamaraDirecta() {
+async function abrirCamaraDirecta(){
   document.getElementById('sov').classList.add('on');
-  try {
+  try{
     scanStream=await navigator.mediaDevices.getUserMedia({video:{facingMode:'environment'}});
     const vid=document.getElementById('svid');
-    vid.srcObject=scanStream;
-    await vid.play();
-    if('BarcodeDetector' in window) {
+    vid.srcObject=scanStream; await vid.play();
+    if('BarcodeDetector' in window){
       const det=new BarcodeDetector({formats:['qr_code','code_128','code_39','ean_13','ean_8','data_matrix']});
       const loop=async()=>{
         if(!scanStream) return;
-        try { const codes=await det.detect(vid); if(codes.length){cerrarScanner();aplicarCodigo(codes[0].rawValue);return;} }
-        catch(e){}
+        try{const codes=await det.detect(vid);if(codes.length){cerrarScanner();aplicarCodigo(codes[0].rawValue);return;}}catch(e){}
         scanRaf=requestAnimationFrame(loop);
       };
       loop();
-    } else {
-      // Sin BarcodeDetector — tomar foto
-      cerrarScanner();
-      document.getElementById('scan-input').click();
-      toast('📷 Toma una foto del código','');
-    }
-  } catch(e) {
-    cerrarScanner();
-    document.getElementById('scan-input').click();
-    toast('📷 Selecciona una foto del código','');
-  }
+    } else {cerrarScanner();document.getElementById('scan-input').click();toast('📷 Toma foto del código','');}
+  }catch(e){cerrarScanner();document.getElementById('scan-input').click();toast('📷 Toma foto del código','');}
 }
-
-function cerrarScanner() {
+function cerrarScanner(){
   document.getElementById('sov').classList.remove('on');
   if(scanRaf){cancelAnimationFrame(scanRaf);scanRaf=null;}
   if(scanStream){scanStream.getTracks().forEach(t=>t.stop());scanStream=null;}
 }
-
-function procesarImgScan(input) {
+function procesarImgScan(input){
   const file=input.files[0]; if(!file) return;
-  if('BarcodeDetector' in window) {
+  if('BarcodeDetector' in window){
     const img=new Image();
     img.onload=async()=>{
-      try {
-        const det=new BarcodeDetector();
-        const codes=await det.detect(img);
+      try{const det=new BarcodeDetector();const codes=await det.detect(img);
         if(codes.length>0){aplicarCodigo(codes[0].rawValue);}
-        else{toast('⚠ No se detectó código — busca manualmente','rojo');}
-      } catch(e){toast('⚠ Error procesando imagen','rojo');}
+        else{toast('⚠ No se detectó código','rojo');}
+      }catch(e){toast('⚠ Error','rojo');}
       URL.revokeObjectURL(img.src);
     };
     img.src=URL.createObjectURL(file);
-  } else {toast('⚠ Escáner no soportado — busca manualmente','rojo');}
+  } else{toast('⚠ Escáner no soportado','rojo');}
   input.value='';
 }
-
-function aplicarCodigo(code) {
-  if(scanTarget==='emp'){document.getElementById('sol').value=code;toast('✓ Escaneado: '+code,'verde');return;}
+function aplicarCodigo(code){
+  if(scanTarget==='emp'){document.getElementById('sol').value=code;toast('✓ Escaneado','verde');return;}
   const prod=todos.find(p=>p.cbarra===code||p.codigo===code||(p.cbarra&&p.cbarra.includes(code)));
-  if(prod){document.getElementById('buscar').value=prod.nombre;selProd(prod.id);toast('✓ '+prod.nombre,'verde');}
+  if(prod){document.getElementById('buscar').value=prod.nombre;filtrar();selProd(prod.id);toast('✓ '+prod.nombre,'verde');}
   else{document.getElementById('buscar').value=code;filtrar();toast('⚠ Código no encontrado','rojo');}
 }
 
-function toast(msg,tipo) {
+function toast(msg,tipo){
   const t=document.getElementById('toast');
   t.textContent=msg;t.className='toast '+tipo+' show';
-  setTimeout(()=>t.classList.remove('show'),2800);
+  setTimeout(()=>t.classList.remove('show'),2600);
 }
 
-function addRec(t,nom,c,u) {
+function addRec(t,nom,c,u){
   recs.unshift({t,nom,c,u,h:new Date().toLocaleTimeString('es-MX',{hour:'2-digit',minute:'2-digit'})});
-  recs=recs.slice(0,5);
-  document.getElementById('recs').innerHTML=recs.map(r=>{
+  recs=recs.slice(0,8);
+  const bar=document.getElementById('recs-bar');
+  bar.style.display='block';
+  document.getElementById('recs-list').innerHTML=recs.map(r=>{
     const cls=r.t==='Entrada'?'e':'s',ico=r.t==='Entrada'?'📥':'📤';
-    return `<div class="ri"><div class="rt ${cls}">${ico}</div>
-      <div class="rf"><div class="rn">${r.nom}</div><div class="rm">${r.h}</div></div>
-      <div class="rc ${cls}">${r.t==='Entrada'?'+':'-'}${r.c} ${r.u}</div></div>`;
+    return `<div class="rec-chip ${cls}">${ico} ${r.nom.split(' ').slice(0,2).join(' ')} · ${r.t==='Entrada'?'+':'-'}${r.c} ${r.u} · ${r.h}</div>`;
   }).join('');
 }
 
-async function registrar() {
+async function registrar(){
   const solicitante=document.getElementById('sol').value.trim();
-  const notas=document.getElementById('notas').value.trim();
-  if(!solicitante){toast('⚠ Ingresa el nombre del solicitante','rojo');return;}
+  if(!solicitante){toast('⚠ Ingresa el solicitante','rojo');return;}
   if(!sel){toast('⚠ Selecciona un producto','rojo');return;}
   const btn=document.getElementById('breg');
   btn.disabled=true;btn.innerHTML='<span class="sp"></span> Registrando...';
-  try {
+  try{
     const body={records:[{fields:{
       [F.pF]:new Date().toISOString().split('T')[0],
       [F.pT]:tipo,
       [F.pCl]:tipo==='Salida'?'Salida a Obra':'Devolución',
       [F.pSt]:'Pendiente',
-      [F.pM]:`Obra: ${OBRA}${notas?' — '+notas:''}`,
+      [F.pM]:`Obra: ${OBRA}`,
       [F.pP]:[{id:sel.id}],
       [F.pCa]:cant,
       [F.pSo]:solicitante,
@@ -416,16 +455,12 @@ async function registrar() {
     const r=await fetch(`${BURL}/${T.pase}`,{method:'POST',headers:hdrs(),body:JSON.stringify(body)});
     if(!r.ok){const e=await r.json();throw new Error(e.error?.message||'Error '+r.status);}
     addRec(tipo,sel.nombre,cant,sel.unidad);
-    toast(`✓ ${tipo} registrada — ${sel.nombre}`,'verde');
-    sel=null;cant=1;
-    document.getElementById('notas').value='';
+    toast(`✓ ${tipo} registrada`,'verde');
+    deselProd();
     document.getElementById('buscar').value='';
-    document.getElementById('ccant').style.display='none';
-    document.getElementById('cnotas').style.display='none';
-    btn.innerHTML='📋 <span id="btxt">Selecciona un producto</span>';
-    btn.disabled=true;
+    filtrar();
     await cargar();
-  } catch(e) {
+  }catch(e){
     toast('⚠ Error: '+e.message,'rojo');
     btn.disabled=false;
     btn.innerHTML=`📋 <span id="btxt">Registrar ${tipo}</span>`;
