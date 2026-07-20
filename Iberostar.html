@@ -234,7 +234,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 <div class="toast" id="toast"></div>
 
 <script>
-const APIKEY='patPxxAo1SUywAXTp.ea39fab16a44f2be43cd45619726a6befc94b907a40b3b60a374c98256392111', BID='appEjceJeN3pUM5nq', OBRA='IBEROSTAR';
+const APIKEY='TU_API_KEY_AQUI', BID='appEjceJeN3pUM5nq', OBRA='IBEROSTAR';
 const BURL='https://api.airtable.com/v0/'+BID;
 const T={prods:'tblPyy38f43qcE568',pase:'tblpwIhATaZUEg6pA'};
 const F={
@@ -260,8 +260,8 @@ function getFoto(flds){
 async function cargar(){
   document.getElementById('est').textContent='Cargando...';
   try{
-    const fields=[F.nom,F.stk,F.uni,F.min,F.cod,F.fot1,F.fot2,F.cb1,F.cb2];
-    let url=`${BURL}/${T.prods}?pageSize=100`+fields.map(f=>'&fields[]='+f).join('');
+    const fields=[F.nom,F.stk,F.uni,F.min,F.cod,F.fot1,F.fot2,F.cb1,F.cb2,'fldDnzipSZ1Z6FJGW'];
+    let url=`${BURL}/${T.prods}?pageSize=100&cellFormat=string`+fields.map(f=>'&fields[]='+f).join('');
     const r=await fetch(url,{headers:hdrs()});
     if(!r.ok) throw new Error('HTTP '+r.status);
     const d=await r.json();
@@ -269,8 +269,8 @@ async function cargar(){
       const flds=rec.fields;
       return{
         id:rec.id,
-        nombre:flds[F.nom]||'',
-        stock:flds[F.stk]||0,
+        nombre:(Array.isArray(flds[F.nom])?flds[F.nom][0]:flds[F.nom])||'',
+        stock:parseFloat(flds['fldDnzipSZ1Z6FJGW'])||flds[F.stk]||0,
         unidad:(flds[F.uni]||'PZ').replace(/\bUDS\b/gi,'PZ'),
         min:flds[F.min]||0,
         codigo:flds[F.cod]||'',
